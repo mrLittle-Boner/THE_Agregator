@@ -2,6 +2,7 @@ import Header from './features/header/Header';
 import SidebarNav from './features/Nav/SidebarNav';
 import HomeContent from './features/home/HomeContent';
 import TodoApp from './features/todoApp/TodoApp';
+import Footer from './features/footer/Footer';
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,9 +10,15 @@ import {
 } from "react-router-dom";
 
 const styles = {
+  app: {
+    display: 'grid',
+    gridTemplateRows: 'auto 1fr auto',
+    minHeight: '100vh'
+  },
   mainContent: {
     display: 'flex',
-    marginTop: '10px'
+    marginTop: '10px',
+    height: 'calc(100vh - 140px)'
   },
   wrapper: {
     marginLeft: '10px',
@@ -23,7 +30,7 @@ const styles = {
 
 function App() {
   return (
-    <div className="App">
+    <div style={styles.app} className="App">
       <Router>
         <Header />
         <main className='main'>
@@ -42,9 +49,9 @@ function App() {
               </div>
             </div>
           </div>
-
         </main>
       </Router>
+      <Footer />
     </div>
   );
 };
