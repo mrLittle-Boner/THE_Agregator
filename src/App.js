@@ -1,7 +1,7 @@
 import Header from './features/header/Header';
 import SidebarNav from './features/Nav/SidebarNav';
 import HomeContent from './features/home/HomeContent';
-import TodoApp from './features/todoApp/TodoApp';
+import TodoApp from './features/todoApp/components/TodoApp';
 import Footer from './features/footer/Footer';
 import {
   BrowserRouter as Router,
