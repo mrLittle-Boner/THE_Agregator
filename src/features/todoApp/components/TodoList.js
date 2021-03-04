@@ -10,7 +10,6 @@ const styles = {
     display: 'flex',
   },
   checkboxContainer: {
-    cursor: 'pointer',
     marginRight: '10px',
     border: '1px solid teal',
     borderBottom: 'none',
@@ -40,19 +39,36 @@ const ListItem = ({ completed, id, text }) => {
       <label style={styles.checkboxContainer} >
         <input onChange={() => dispatch(toggleTodo(id))} type='checkbox' checked={completed} />
       </label>
-      {text}
+      <span style={completed ? { textDecoration: 'line-through' } : {}}>
+        {text}
+      </span>
       <button onClick={() => dispatch(removeTodo(id))} style={styles.close}> &times; </button>
     </li>
   );
 };
 
 export default function TodoList() {
-
   const todos = useSelector(state => state.todos);
-  const showedTodos = todos.map(todo => <ListItem completed={todo.completed} id={todo.id} key={todo.id} text={todo.text} />);
+  const filter = useSelector(state => state.filters);
+
+  const filteredTodos = () => {
+    switch (filter.currentFilter) {
+      case filter.active:
+        return todos.filter(todo => todo.completed);
+      case filter.completed:
+        return todos.filter(todo => !todo.completed);
+      default:
+        return todos;
+    };
+  };
+
+  const showedTodos = filteredTodos().map(todo => <ListItem completed={todo.completed} id={todo.id} key={todo.id} text={todo.text} />);
+
+  const emptyTodosMessage = Boolean(showedTodos.length) ? <div></div> : <div>There is no Todos in the list</div>;
 
   return (
     <ul style={styles.list}>
+      {emptyTodosMessage}
       {showedTodos}
     </ul>
   );

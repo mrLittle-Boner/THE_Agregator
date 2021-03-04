@@ -1,4 +1,7 @@
 import React from 'react';
+import { completeAll, clearAll, clearCompleted } from '../todosSlice';
+import { showAll, showCompleted, showActive } from '../filtersSlice';
+import { useDispatch } from 'react-redux';
 
 const styles = {
   filters: {
@@ -9,7 +12,6 @@ const styles = {
     gap: '10px'
   },
   filterButton: {
-    fontSize: '22px',
     border: '1px solid teal',
     backgroundColor: 'white',
     color: 'teal',
@@ -34,25 +36,28 @@ const hoverOff = (e) => {
 };
 
 
-const FilterButton = ({ children }) => {
+const FilterButton = ({ handleClick, children }) => {
 
   return (
     <button
       onMouseOver={e => hoverOn(e)}
       onMouseLeave={e => hoverOff(e)}
-      className='todos__filters-btn' style={styles.filterButton}>{children}</button>
+      onClick={() => handleClick()}
+      className='filters__btn' style={styles.filterButton}>{children}</button>
   );
 };
 
 export default function FilterButtons() {
+  const dispatch = useDispatch();
+
   return (
-    <div className='todos__filters ' style={styles.filters}>
-      <FilterButton>Show All</FilterButton>
-      <FilterButton>Clear Completed</FilterButton>
-      <FilterButton>Show Active</FilterButton>
-      <FilterButton>Completed All</FilterButton>
-      <FilterButton>Show Completed</FilterButton>
-      <FilterButton>Clear All</FilterButton>
+    <div className='filters ' style={styles.filters}>
+      <FilterButton handleClick={() => dispatch(showAll())}>Show All</FilterButton>
+      <FilterButton handleClick={() => dispatch(clearCompleted())}>Clear Completed</FilterButton>
+      <FilterButton handleClick={() => dispatch(showActive())}>Show Active</FilterButton>
+      <FilterButton handleClick={() => dispatch(completeAll())}>Completed All</FilterButton>
+      <FilterButton handleClick={() => dispatch(showCompleted())}>Show Completed</FilterButton>
+      <FilterButton handleClick={() => dispatch(clearAll())}>Clear All</FilterButton>
     </div>
   );
 };
