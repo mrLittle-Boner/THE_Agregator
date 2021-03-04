@@ -7,7 +7,6 @@ const styles = {
     maxWidth: '550px',
     margin: '15px auto 0px',
     display: 'flex',
-
   },
   inputField: {
     padding: '6px 10px 5px 4px',

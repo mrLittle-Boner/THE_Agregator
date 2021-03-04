@@ -1,8 +1,11 @@
 import Header from './features/header/Header';
 import SidebarNav from './features/Nav/SidebarNav';
+import Footer from './features/footer/Footer';
+
 import HomeContent from './features/home/HomeContent';
 import TodoApp from './features/todoApp/components/TodoApp';
-import Footer from './features/footer/Footer';
+import WeatherApp from './features/weather/components/WeatherApp';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -44,6 +47,9 @@ function App() {
                   </Route>
                   <Route exact path='/todos'>
                     <TodoApp />
+                  </Route>
+                  <Route exact path='/weather'>
+                    <WeatherApp />
                   </Route>
                 </Switch>
               </div>
