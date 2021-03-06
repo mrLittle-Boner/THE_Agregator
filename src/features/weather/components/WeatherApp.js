@@ -21,6 +21,7 @@ const styles = {
 };
 
 export default function WeatherApp() {
+
   return (
     <section className='weather'>
       <h2 style={styles.title} className='weather__title'>And how we can without WeatherApp ? </h2>
