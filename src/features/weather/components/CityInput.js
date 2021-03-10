@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchWeather } from '../weatherSlice';
+import { addRecentCity, fetchWeather } from '../weatherSlice';
 
 
 const styles = {
@@ -26,7 +26,7 @@ export default function CityInput() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchWeather(inputValue));
-
+    dispatch(addRecentCity(inputValue));
     setInputValue('');
   };
 

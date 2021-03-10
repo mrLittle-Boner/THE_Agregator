@@ -31,7 +31,7 @@ const styles = {
   },
   others: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(3,1fr)',
+    gridTemplateColumns: 'repeat(2,1fr)',
     rowGap: '10px',
     columnGap: '20px',
     marginTop: '15px',
@@ -50,67 +50,48 @@ const styles = {
 
 export default function WeatherCard() {
   const weather = useSelector(state => state.weatherInfo.data);
-  const { name, dt } = weather;
+
+  const { name, dt, timezone } = weather;
   const {
     temp,
     humidity,
     pressure,
   } = weather.main;
 
+  const weekDay = new Date((dt + (timezone)) * 1000).toLocaleDateString('en-US', { weekday: 'long' });
   const { icon, description } = weather.weather[0];
 
-  const date = new Date(dt * 1000);
-  const day = date.toLocaleString('ru-Ru', { weekday: 'long' }).split(' ')[0];
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-
-
-  const isExistData = Boolean(Object.values(weather).length);
-
-
-  // const daytimeBGC = isDay ? 'goldenrod' : 'darkslateblue';
-  //  darkslateblue
-
   return (
-    <>
-      {
-        isExistData ?
-          <div style={styles.card} className='weather__info card'>
-            <div style={styles.content} className='card__city'>
+    <div style={styles.card} className='weather__info card'>
+      <div style={styles.content} className='card__city'>
 
-              <h3 style={styles.cityName} className='card__city-name'>
-                {name}, {weather.sys.country}
-              </h3>
+        <h3 style={styles.cityName} className='card__city-name'>
+          {name}, {weather.sys.country}
+        </h3>
 
-              <div style={styles.temp} className='city__temp'>
-                {temp}&#8451;
-              </div>
+        <div style={styles.temp} className='city__temp'>
+          {Math.round(temp)}&#8451;
+        </div>
 
-              <div style={styles.imgContainer} className='card__city-condition'>
-                <img style={styles.img} src={weatherIcons[icon]} alt="" />
-              </div>
+        <div style={styles.imgContainer} className='card__city-condition'>
+          <img style={styles.img} src={weatherIcons[icon]} alt="" />
+        </div>
 
-              <div style={styles.condition} className='card__'>
-                {description}
-              </div>
+        <div style={styles.condition} className='card__'>
+          {description}
+        </div>
 
-              <div style={styles.date} className="city__daytime" >
-                {`${day} ${hours}:${minutes}`}
-              </div>
+        <div style={styles.date} className="city__daytime" >
+          {weekDay}
+        </div>
 
-              <ul style={styles.others} className="city__other">
-                <li>Wind: {weather.wind.speed}m/s</li>
-                <li>Pressure: {pressure}hPa</li>
-                <li>Humidity: {humidity}%</li>
-                <li>Cloudness: {weather.clouds.clouds.all}%</li>
-              </ul>
-            </div>
-          </div>
-          :
-          <div style={{ textAlign: 'center', marginTop: '15px' }}>
-            No search data yet, please use search bar above!
-          </div>
-      }
-    </>
+        <ul style={styles.others} className="city__other">
+          <li>Wind: {weather.wind.speed}m/s</li>
+          <li>Pressure: {pressure}hPa</li>
+          <li>Humidity: {humidity}%</li>
+          <li>Cloudness: {weather.clouds.all}%</li>
+        </ul>
+      </div>
+    </div>
   );
 };

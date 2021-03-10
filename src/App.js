@@ -18,10 +18,13 @@ const styles = {
     gridTemplateRows: 'auto 1fr auto',
     minHeight: '100vh'
   },
+  main: {
+    height: '100%',
+    padding: '10px 0 10px',
+  },
   mainContent: {
     display: 'flex',
-    marginTop: '10px',
-    height: 'calc(100vh - 140px)'
+    height: '100%'
   },
   wrapper: {
     marginLeft: '10px',
@@ -36,8 +39,8 @@ function App() {
     <div style={styles.app} className="App">
       <Router>
         <Header />
-        <main className='main'>
-          <div className='container main__container'>
+        <main style={styles.main} className='main'>
+          <div style={{ height: '100%' }} className='container main__container'>
             <div style={styles.mainContent} className="main__content">
               <SidebarNav />
               <div style={styles.wrapper} className='main__content-wrapper'>
