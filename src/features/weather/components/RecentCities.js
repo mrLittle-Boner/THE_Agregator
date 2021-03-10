@@ -30,11 +30,10 @@ const LastCitiesItem = ({ children }) => {
 
 const LastCitiesList = () => {
   const cities = useSelector(state => state.weatherInfo.lastCities);
-  const renderedCities = cities.map(city => <LastCitiesItem>{city}</LastCitiesItem>);
+  const renderedCities = cities.map(city => <LastCitiesItem key={city.id}>{city.name}</LastCitiesItem>);
   return (
     <ul>
       { cities ? renderedCities : ''}
-
     </ul>
   );
 };

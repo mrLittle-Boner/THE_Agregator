@@ -25,8 +25,11 @@ export const fetchWeather = createAsyncThunk(
 
     const response = await fetch(fetchUrl);
     const data = await response.json();
-
-    return data;
+    if (data.cod === '404') {
+      return {};
+    } else {
+      return data;
+    }
   }
 );
 
@@ -50,15 +53,15 @@ const weatherSlice = createSlice({
     romoveFavCity(state, action) {
       state.favoriteCities = state.favoriteCities.filter(city => city.id !== action.payload);
     },
-    addRecentCity(state, action) {
-      // let cities = state.weatherinfo.lastCities;
-      // cities.push(action.payload);
-      // cities = [...cities.slice(-4)];
-
-      if (state.weatherinfo.lastCities.lenght >= 5) {
-        state.weatherinfo.lastCities = [action.payload, ...state.weatherinfo.lastCities.slice(1, 4)]
-      } else {
-        state.weatherinfo.lastCities.push(action.payload);
+    addRecentCity: {
+      reducer: (state, action) => {
+        state.lastCities = [action.payload, ...state.lastCities.slice(0, 2)];
+      },
+      prepare: (inputValue) => {
+        const uniqId = uuidv4();
+        const capitalizedInput = inputValue[0].toUpperCase() + inputValue.slice(1);
+        // const newCity = { name: capitalizedInput, id: uniqId };
+        return { payload: { name: capitalizedInput, id: uniqId } };
       }
     }
   },
