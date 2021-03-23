@@ -4,17 +4,8 @@ import { v4 as uuidv4 } from 'uuid';
 const initialState = {
   weatherLoading: 'idle',
   data: {},
-  lastCities: [
-    // 'Moscow', 'Huston', 'Denver', 'Berlin', 'Honolulu'
-  ],
-  favoriteCities: [
-    // 'Rome',
-    // 'Moscow',
-    // 'Huston',
-    // 'Denver',
-    // 'Berlin',
-    // 'Honolulu',
-  ]
+  lastCities: [],
+  favoriteCities: []
 };
 
 export const fetchWeather = createAsyncThunk(

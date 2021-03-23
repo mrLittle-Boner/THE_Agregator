@@ -6,7 +6,6 @@ const styles = {
     backgroundColor: 'teal',
     color: 'white',
     fontSize: '22px',
-    // marginLeft: '-10px',
 
     minWidth: '320px'
   },
@@ -34,7 +33,7 @@ export default function SidebarNav() {
       <SideBarLink name='Home' path='/' exact />
       <SideBarLink name='Todo App' path='/todos' />
       <SideBarLink name='Weather' path='/weather' />
-      <SideBarLink name='Currency' path='/currency' />
+      <SideBarLink name='Money Flow' path='/money' />
       <SideBarLink name='Users Table' path='/users-table' />
     </ul>
   )

@@ -6,6 +6,7 @@ import HomeContent from './features/home/HomeContent';
 import TodoApp from './features/todoApp/components/TodoApp';
 import WeatherApp from './features/weather/components/WeatherApp';
 
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -48,11 +49,14 @@ function App() {
                   <Route exact path='/'>
                     <HomeContent />
                   </Route>
-                  <Route exact path='/todos'>
+                  <Route path='/todos'>
                     <TodoApp />
                   </Route>
-                  <Route exact path='/weather'>
+                  <Route path='/weather'>
                     <WeatherApp />
+                  </Route>
+                  <Route path='/money'>
+
                   </Route>
                 </Switch>
               </div>
