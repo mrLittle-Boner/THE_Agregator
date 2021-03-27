@@ -5,6 +5,7 @@ import Footer from './features/footer/Footer';
 import HomeContent from './features/home/HomeContent';
 import TodoApp from './features/todoApp/components/TodoApp';
 import WeatherApp from './features/weather/components/WeatherApp';
+import KittensApp from './features/kittens/KittensApp';
 
 
 import {
@@ -57,6 +58,9 @@ function App() {
                   </Route>
                   <Route path='/money'>
 
+                  </Route>
+                  <Route path='/kittens'>
+                    <KittensApp />
                   </Route>
                 </Switch>
               </div>

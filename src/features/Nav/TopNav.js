@@ -1,3 +1,6 @@
+import { NavLink } from 'react-router-dom';
+
+
 const styles = {
   list: {
     display: 'flex',
@@ -11,14 +14,10 @@ export default function TopNav() {
     <nav className='top-nav'>
       <ul style={styles.list} className='top-nav__list'>
         <li className='top-nav__item'>
-          <a href='/' className='top-nav__link'>
-            Home
-          </a>
+          <NavLink to='/' className='top-nav__link'> Home </NavLink>
         </li>
         <li className='top-nav__item'>
-          <a href='kittens' className='top-nav__link'>
-            Cute Kittens
-          </a>
+          <NavLink to='/kittens' className='top-nav__link'> Cute Kittens </NavLink>
         </li>
       </ul>
     </nav>
