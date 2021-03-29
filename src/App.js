@@ -32,7 +32,7 @@ const styles = {
     marginLeft: '10px',
     border: '1px solid teal',
     flexGrow: '1',
-    padding: '10px 5px'
+    // padding: '10px 5px'
   }
 };
 
